@@ -148,7 +148,7 @@ export default function Home() {
 
       {/* Plate Section - Fixed height where icons appear */}
       <section id="plate-section" style={{
-        minHeight: '200vh',
+        minHeight: '400vh',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
