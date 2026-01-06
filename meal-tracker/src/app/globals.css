@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  /* Minimalist Color Palette */
-  --background: #0a0a0a;
-  --foreground: #ffffff;
-  --plate: #f8f8f8;
-  --accent: #2a2a2a;
+  /* Production Color Palette - Champagne Pink & Crayola */
+  --background: #E6D4C7;
+  --foreground: #273B3A;
+  --plate: #ffffff;
+  --accent: #273B3A;
 
   /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -116,7 +116,7 @@ h3 {
   padding: var(--spacing-sm);
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(39, 59, 58, 0.3);
   color: var(--foreground);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -130,20 +130,20 @@ h3 {
 }
 
 .input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(39, 59, 58, 0.4);
   font-weight: 300;
 }
 
 /* Card - Minimalist */
 .card {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(39, 59, 58, 0.2);
   padding: var(--spacing-md);
   transition: border-color var(--transition);
 }
 
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(39, 59, 58, 0.4);
 }
 
 /* Plate Scroll Effect */
@@ -227,7 +227,7 @@ h3 {
 }
 
 .nav.scrolled {
-  background: rgba(10, 10, 10, 0.95);
+  background: rgba(39, 59, 58, 0.95);
   backdrop-filter: blur(10px);
 }
 

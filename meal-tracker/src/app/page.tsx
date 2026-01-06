@@ -55,15 +55,15 @@ export default function Home() {
         minHeight: '100vh',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#0a0a0a',
-        color: '#ffffff'
+        background: '#E6D4C7',
+        color: '#273B3A'
       }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{
             width: '40px',
             height: '40px',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            borderTop: '1px solid #ffffff',
+            border: '1px solid rgba(39, 59, 58, 0.3)',
+            borderTop: '1px solid #273B3A',
             borderRadius: '50%',
             animation: 'spin 1s linear infinite',
             margin: '0 auto 1rem'
@@ -169,13 +169,21 @@ export default function Home() {
           <div style={{
             width: 'min(80vw, 600px)',
             height: 'min(80vw, 600px)',
-            background: 'var(--plate)',
-            borderRadius: '50%',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
             position: 'relative',
             transform: `rotate(${scrollProgress * 360}deg)`,
             transition: 'transform 0.1s linear'
           }}>
+            {/* Realistic plate image */}
+            <img
+              src="/plate.png"
+              alt="Plate"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3))'
+              }}
+            />
             {/* Food icons appearing on the plate */}
             {features.map((feature, index) => {
               const angle = (index * Math.PI * 2) / features.length - Math.PI / 2;
@@ -197,7 +205,7 @@ export default function Home() {
                     pointerEvents: 'auto'
                   }}
                 >
-                  <Link href={feature.link} style={{ display: 'block', color: '#0a0a0a' }}>
+                  <Link href={feature.link} style={{ display: 'block', color: '#273B3A' }}>
                     <feature.icon size={48} strokeWidth={1.5} />
                   </Link>
                 </div>
@@ -208,7 +216,7 @@ export default function Home() {
       </section>
 
       {/* Feature Sections - Below the plate */}
-      <section style={{ background: '#0a0a0a', position: 'relative', zIndex: 10 }}>
+      <section style={{ background: '#273B3A', color: '#E6D4C7', position: 'relative', zIndex: 10 }}>
         {features.map((feature, index) => (
           <div key={index} className="section">
             <div className="section-content">
@@ -246,9 +254,9 @@ export default function Home() {
         <footer style={{
           padding: '4rem 2rem',
           textAlign: 'center',
-          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+          borderTop: '1px solid rgba(230, 212, 199, 0.2)',
           fontSize: '0.875rem',
-          opacity: 0.5
+          opacity: 0.7
         }}>
           <p>© 2026 Lizzie Tracker</p>
         </footer>
