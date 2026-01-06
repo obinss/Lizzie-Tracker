@@ -1,0 +1,494 @@
+[
+    {
+        "id": "b1",
+        "name": "Classic Avocado Toast",
+        "category": "breakfast",
+        "prepTime": 10,
+        "cookTime": 5,
+        "servings": 2,
+        "image": "🥑",
+        "ingredients": [
+            {
+                "item": "Whole grain bread",
+                "quantity": "4 slices"
+            },
+            {
+                "item": "Ripe avocados",
+                "quantity": "2"
+            },
+            {
+                "item": "Lemon juice",
+                "quantity": "1 tbsp"
+            },
+            {
+                "item": "Salt",
+                "quantity": "to taste"
+            },
+            {
+                "item": "Black pepper",
+                "quantity": "to taste"
+            },
+            {
+                "item": "Cherry tomatoes",
+                "quantity": "1 cup, halved"
+            },
+            {
+                "item": "Eggs (optional)",
+                "quantity": "2"
+            }
+        ],
+        "instructions": "1. Toast bread until golden. 2. Mash avocados with lemon juice, salt, and pepper. 3. Spread on toast. 4. Top with cherry tomatoes. 5. Optional: top with fried or poached egg."
+    },
+    {
+        "id": "b2",
+        "name": "Greek Yogurt Parfait",
+        "category": "breakfast",
+        "prepTime": 10,
+        "cookTime": 0,
+        "servings": 2,
+        "image": "🥣",
+        "ingredients": [
+            {
+                "item": "Greek yogurt",
+                "quantity": "2 cups"
+            },
+            {
+                "item": "Granola",
+                "quantity": "1 cup"
+            },
+            {
+                "item": "Mixed berries",
+                "quantity": "2 cups"
+            },
+            {
+                "item": "Honey",
+                "quantity": "2 tbsp"
+            },
+            {
+                "item": "Sliced almonds",
+                "quantity": "¼ cup"
+            }
+        ],
+        "instructions": "1. Layer yogurt in bowls or glasses. 2. Add granola and berries. 3. Drizzle with honey. 4. Top with almonds. 5. Serve immediately."
+    },
+    {
+        "id": "b3",
+        "name": "Veggie Scrambled Eggs",
+        "category": "breakfast",
+        "prepTime": 10,
+        "cookTime": 10,
+        "servings": 2,
+        "image": "🍳",
+        "ingredients": [
+            {
+                "item": "Eggs",
+                "quantity": "6"
+            },
+            {
+                "item": "Bell peppers",
+                "quantity": "1, diced"
+            },
+            {
+                "item": "Onion",
+                "quantity": "½, diced"
+            },
+            {
+                "item": "Spinach",
+                "quantity": "2 cups"
+            },
+            {
+                "item": "Milk",
+                "quantity": "¼ cup"
+            },
+            {
+                "item": "Butter",
+                "quantity": "2 tbsp"
+            },
+            {
+                "item": "Cheese",
+                "quantity": "½ cup, shredded"
+            }
+        ],
+        "instructions": "1. Whisk eggs with milk. 2. Sauté vegetables in butter. 3. Add eggs and scramble gently. 4. Add spinach and cook until wilted. 5. Top with cheese and serve."
+    },
+    {
+        "id": "b4",
+        "name": "Overnight Oats",
+        "category": "breakfast",
+        "prepTime": 5,
+        "cookTime": 0,
+        "servings": 2,
+        "image": "🥛",
+        "ingredients": [
+            {
+                "item": "Rolled oats",
+                "quantity": "1 cup"
+            },
+            {
+                "item": "Milk",
+                "quantity": "1½ cups"
+            },
+            {
+                "item": "Chia seeds",
+                "quantity": "2 tbsp"
+            },
+            {
+                "item": "Maple syrup",
+                "quantity": "2 tbsp"
+            },
+            {
+                "item": "Vanilla extract",
+                "quantity": "1 tsp"
+            },
+            {
+                "item": "Fresh fruit",
+                "quantity": "1 cup"
+            },
+            {
+                "item": "Nuts",
+                "quantity": "¼ cup"
+            }
+        ],
+        "instructions": "1. Mix oats, milk, chia seeds, maple syrup, and vanilla. 2. Refrigerate overnight. 3. In the morning, stir and top with fruit and nuts. 4. Serve cold."
+    },
+    {
+        "id": "l1",
+        "name": "Mediterranean Quinoa Bowl",
+        "category": "lunch",
+        "prepTime": 15,
+        "cookTime": 20,
+        "servings": 2,
+        "image": "🥗",
+        "ingredients": [
+            {
+                "item": "Quinoa",
+                "quantity": "1 cup"
+            },
+            {
+                "item": "Cucumber",
+                "quantity": "1, diced"
+            },
+            {
+                "item": "Cherry tomatoes",
+                "quantity": "2 cups, halved"
+            },
+            {
+                "item": "Feta cheese",
+                "quantity": "½ cup, crumbled"
+            },
+            {
+                "item": "Kalamata olives",
+                "quantity": "½ cup"
+            },
+            {
+                "item": "Red onion",
+                "quantity": "¼, sliced"
+            },
+            {
+                "item": "Olive oil",
+                "quantity": "3 tbsp"
+            },
+            {
+                "item": "Lemon juice",
+                "quantity": "2 tbsp"
+            }
+        ],
+        "instructions": "1. Cook quinoa according to package directions. 2. Let cool slightly. 3. Mix with vegetables, feta, and olives. 4. Dress with olive oil and lemon juice. 5. Season and serve."
+    },
+    {
+        "id": "l2",
+        "name": "Chicken Caesar Wrap",
+        "category": "lunch",
+        "prepTime": 15,
+        "cookTime": 15,
+        "servings": 2,
+        "image": "🌯",
+        "ingredients": [
+            {
+                "item": "Chicken breast",
+                "quantity": "2"
+            },
+            {
+                "item": "Large tortillas",
+                "quantity": "2"
+            },
+            {
+                "item": "Romaine lettuce",
+                "quantity": "3 cups, chopped"
+            },
+            {
+                "item": "Parmesan cheese",
+                "quantity": "½ cup, grated"
+            },
+            {
+                "item": "Caesar dressing",
+                "quantity": "¼ cup"
+            },
+            {
+                "item": "Cherry tomatoes",
+                "quantity": "1 cup, halved"
+            }
+        ],
+        "instructions": "1. Season and cook chicken until done, then slice. 2. Toss lettuce with dressing and parmesan. 3. Warm tortillas. 4. Fill with chicken, lettuce, and tomatoes. 5. Wrap and serve."
+    },
+    {
+        "id": "l3",
+        "name": "Vegetarian Pasta Primavera",
+        "category": "lunch",
+        "prepTime": 15,
+        "cookTime": 15,
+        "servings": 2,
+        "image": "🍝",
+        "ingredients": [
+            {
+                "item": "Pasta",
+                "quantity": "8 oz"
+            },
+            {
+                "item": "Zucchini",
+                "quantity": "1, sliced"
+            },
+            {
+                "item": "Bell peppers",
+                "quantity": "2, sliced"
+            },
+            {
+                "item": "Cherry tomatoes",
+                "quantity": "2 cups"
+            },
+            {
+                "item": "Garlic",
+                "quantity": "3 cloves, minced"
+            },
+            {
+                "item": "Olive oil",
+                "quantity": "3 tbsp"
+            },
+            {
+                "item": "Basil",
+                "quantity": "¼ cup, fresh"
+            },
+            {
+                "item": "Parmesan",
+                "quantity": "½ cup"
+            }
+        ],
+        "instructions": "1. Cook pasta according to package. 2. Sauté garlic in olive oil. 3. Add vegetables and cook until tender. 4. Toss with pasta and basil. 5. Top with parmesan and serve."
+    },
+    {
+        "id": "l4",
+        "name": "Asian Sesame Salad",
+        "category": "lunch",
+        "prepTime": 20,
+        "cookTime": 0,
+        "servings": 2,
+        "image": "🥢",
+        "ingredients": [
+            {
+                "item": "Mixed greens",
+                "quantity": "4 cups"
+            },
+            {
+                "item": "Edamame",
+                "quantity": "1 cup, shelled"
+            },
+            {
+                "item": "Carrots",
+                "quantity": "2, shredded"
+            },
+            {
+                "item": "Red cabbage",
+                "quantity": "1 cup, shredded"
+            },
+            {
+                "item": "Mandarin oranges",
+                "quantity": "1 cup"
+            },
+            {
+                "item": "Sesame dressing",
+                "quantity": "¼ cup"
+            },
+            {
+                "item": "Sesame seeds",
+                "quantity": "2 tbsp"
+            },
+            {
+                "item": "Crispy noodles",
+                "quantity": "½ cup"
+            }
+        ],
+        "instructions": "1. Combine greens, edamame, carrots, and cabbage. 2. Add mandarin oranges. 3. Toss with sesame dressing. 4. Top with sesame seeds and crispy noodles. 5. Serve immediately."
+    },
+    {
+        "id": "d1",
+        "name": "Grilled Salmon with Vegetables",
+        "category": "dinner",
+        "prepTime": 15,
+        "cookTime": 25,
+        "servings": 2,
+        "image": "🐟",
+        "ingredients": [
+            {
+                "item": "Salmon fillets",
+                "quantity": "2"
+            },
+            {
+                "item": "Broccoli",
+                "quantity": "2 cups, florets"
+            },
+            {
+                "item": "Asparagus",
+                "quantity": "1 bunch"
+            },
+            {
+                "item": "Lemon",
+                "quantity": "1"
+            },
+            {
+                "item": "Olive oil",
+                "quantity": "3 tbsp"
+            },
+            {
+                "item": "Garlic",
+                "quantity": "3 cloves, minced"
+            },
+            {
+                "item": "Dill",
+                "quantity": "2 tbsp, fresh"
+            }
+        ],
+        "instructions": "1. Preheat oven to 400°F. 2. Season salmon with lemon, dill, and garlic. 3. Toss vegetables with olive oil. 4. Bake salmon and vegetables for 20-25 minutes. 5. Serve with lemon wedges."
+    },
+    {
+        "id": "d2",
+        "name": "Chicken Stir-Fry",
+        "category": "dinner",
+        "prepTime": 20,
+        "cookTime": 15,
+        "servings": 2,
+        "image": "🍲",
+        "ingredients": [
+            {
+                "item": "Chicken breast",
+                "quantity": "1 lb, sliced"
+            },
+            {
+                "item": "Mixed vegetables",
+                "quantity": "4 cups"
+            },
+            {
+                "item": "Soy sauce",
+                "quantity": "3 tbsp"
+            },
+            {
+                "item": "Ginger",
+                "quantity": "1 tbsp, minced"
+            },
+            {
+                "item": "Garlic",
+                "quantity": "3 cloves, minced"
+            },
+            {
+                "item": "Sesame oil",
+                "quantity": "2 tbsp"
+            },
+            {
+                "item": "Rice",
+                "quantity": "2 cups, cooked"
+            },
+            {
+                "item": "Green onions",
+                "quantity": "¼ cup, sliced"
+            }
+        ],
+        "instructions": "1. Heat sesame oil in wok. 2. Cook chicken until done, remove. 3. Stir-fry vegetables with ginger and garlic. 4. Add chicken back with soy sauce. 5. Serve over rice with green onions."
+    },
+    {
+        "id": "d3",
+        "name": "Vegetarian Tacos",
+        "category": "dinner",
+        "prepTime": 15,
+        "cookTime": 20,
+        "servings": 2,
+        "image": "🌮",
+        "ingredients": [
+            {
+                "item": "Black beans",
+                "quantity": "2 cups, cooked"
+            },
+            {
+                "item": "Corn tortillas",
+                "quantity": "8"
+            },
+            {
+                "item": "Avocado",
+                "quantity": "2"
+            },
+            {
+                "item": "Purple cabbage",
+                "quantity": "2 cups, shredded"
+            },
+            {
+                "item": "Lime",
+                "quantity": "2"
+            },
+            {
+                "item": "Cilantro",
+                "quantity": "½ cup"
+            },
+            {
+                "item": "Salsa",
+                "quantity": "1 cup"
+            },
+            {
+                "item": "Sour cream",
+                "quantity": "½ cup"
+            }
+        ],
+        "instructions": "1. Warm beans with spices. 2. Warm tortillas. 3. Mash avocado with lime juice. 4. Fill tortillas with beans, cabbage, and avocado. 5. Top with cilantro, salsa, and sour cream."
+    },
+    {
+        "id": "d4",
+        "name": "Spaghetti Bolognese",
+        "category": "dinner",
+        "prepTime": 15,
+        "cookTime": 45,
+        "servings": 2,
+        "image": "🍝",
+        "ingredients": [
+            {
+                "item": "Ground beef",
+                "quantity": "1 lb"
+            },
+            {
+                "item": "Spaghetti",
+                "quantity": "8 oz"
+            },
+            {
+                "item": "Onion",
+                "quantity": "1, diced"
+            },
+            {
+                "item": "Garlic",
+                "quantity": "4 cloves, minced"
+            },
+            {
+                "item": "Crushed tomatoes",
+                "quantity": "28 oz can"
+            },
+            {
+                "item": "Tomato paste",
+                "quantity": "2 tbsp"
+            },
+            {
+                "item": "Italian herbs",
+                "quantity": "2 tsp"
+            },
+            {
+                "item": "Parmesan",
+                "quantity": "½ cup, grated"
+            }
+        ],
+        "instructions": "1. Brown beef with onion and garlic. 2. Add tomatoes, paste, and herbs. 3. Simmer 30 minutes. 4. Cook spaghetti according to package. 5. Serve sauce over pasta with parmesan."
+    }
+]
