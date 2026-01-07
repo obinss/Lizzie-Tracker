@@ -13,7 +13,7 @@ export default function Home() {
   const [navScrolled, setNavScrolled] = useState(false);
   const [currentPlateIndex, setCurrentPlateIndex] = useState(0);
   const [plateRotation, setPlateRotation] = useState(0);
-  const [currentFeatureIndex, setCurrentFeatureIndex] = useState(-1);
+  const [currentFeatureIndex, setCurrentFeatureIndex] = useState(0);
 
   useEffect(() => {
     if (!loading && user) {
@@ -36,7 +36,7 @@ export default function Home() {
           const progress = (scrollPosition - plateSectionTop) / plateSectionHeight;
           setScrollProgress(Math.min(progress, 1));
 
-          // Calculate plate index (0-5 for 6 states)
+          // Calculate plate index (0-5 for 6 states) - cycles through all 6
           const plateIndex = Math.min(Math.floor(progress * 6), 5);
           setCurrentPlateIndex(plateIndex);
 
@@ -44,11 +44,9 @@ export default function Home() {
           const rotation = progress * 360;
           setPlateRotation(rotation);
 
-          // Calculate which feature detail to show (6 features total)
-          // Features appear in second half of scroll
-          const featureProgress = Math.max(0, (progress - 0.5) * 2);
-          const featureIndex = Math.min(Math.floor(featureProgress * 6), 5);
-          setCurrentFeatureIndex(featureProgress > 0 ? featureIndex : -1);
+          // Calculate which feature to highlight (0-5)
+          const featureIndex = Math.min(Math.floor(progress * 6), 5);
+          setCurrentFeatureIndex(featureIndex);
         } else if (scrollPosition > plateSectionBottom) {
           setScrollProgress(1);
           setCurrentPlateIndex(5);
@@ -57,7 +55,7 @@ export default function Home() {
           setScrollProgress(0);
           setCurrentPlateIndex(0);
           setPlateRotation(0);
-          setCurrentFeatureIndex(-1);
+          setCurrentFeatureIndex(0);
         }
       }
 
@@ -128,16 +126,43 @@ export default function Home() {
   ];
 
   const features = [
-    { icon: Calendar, title: 'Meal Planning', link: '/meal-plan', description: 'Weekly plans tailored to your goals' },
-    { icon: BookOpen, title: 'Recipes', link: '/meal-plan', description: 'Detailed instructions for every dish' },
-    { icon: ShoppingCart, title: 'Shopping', link: '/shopping-list', description: 'Automated ingredient lists' },
-    { icon: Camera, title: 'Photos', link: '/upload-photo', description: 'Document your meals visually' },
-    { icon: Settings, title: 'Settings', link: '/settings', description: 'Customize times and notifications' },
-    { icon: Users, title: 'Community', link: '/dashboard', description: 'Track progress with friends' }
+    {
+      icon: Calendar,
+      title: 'Meal Planning',
+      link: '/meal-plan',
+      description: 'Weekly meal plans tailored to your dietary goals and preferences'
+    },
+    {
+      icon: BookOpen,
+      title: 'Recipes',
+      link: '/meal-plan',
+      description: 'Detailed cooking instructions and nutritional information for every dish'
+    },
+    {
+      icon: ShoppingCart,
+      title: 'Shopping',
+      link: '/shopping-list',
+      description: 'Automated grocery lists generated from your meal plans'
+    },
+    {
+      icon: Camera,
+      title: 'Photos',
+      link: '/upload-photo',
+      description: 'Document your meals visually and track your progress over time'
+    },
+    {
+      icon: Settings,
+      title: 'Settings',
+      link: '/settings',
+      description: 'Customize meal times, preparation schedules, and notifications'
+    },
+    {
+      icon: Users,
+      title: 'Community',
+      link: '/dashboard',
+      description: 'Connect with friends and share your wellness journey together'
+    }
   ];
-
-  // Calculate which icons should be visible based on plate index
-  const visibleIconsCount = currentPlateIndex + 1;
 
   return (
     <>
@@ -200,13 +225,13 @@ export default function Home() {
         <div className="scroll-indicator">Scroll to Explore</div>
       </section>
 
-      {/* SECTION 2: Integrated Plate Section with Feature Details */}
+      {/* SECTION 2: Integrated Plate Section - Plate Always Visible */}
       <section id="plate-section" style={{
         minHeight: '600vh',
         position: 'relative',
         background: 'var(--background)'
       }}>
-        {/* Sticky container - everything happens here */}
+        {/* Sticky container - plate stays centered, content changes below */}
         <div style={{
           position: 'sticky',
           top: 0,
@@ -215,47 +240,51 @@ export default function Home() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '6rem 2rem',
+          justifyContent: 'center',
+          padding: '4rem 2rem',
           overflow: 'hidden'
         }}>
-          {/* Top Title */}
-          <div style={{ textAlign: 'center', flex: '0 0 auto' }}>
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(2rem, 5vw, 4rem)',
-              fontWeight: 400,
-              marginBottom: '1rem',
-              opacity: 0.95,
-              transition: 'all 0.5s ease'
-            }}>
-              {currentFeatureIndex >= 0 ? features[currentFeatureIndex].title : plateTitles[currentPlateIndex]}
-            </h2>
-          </div>
-
-          {/* Center: Rotating Plate with Icons OR Feature Details */}
+          {/* Main Content Container */}
           <div style={{
-            position: 'relative',
             width: '100%',
-            maxWidth: '800px',
-            height: 'auto',
-            flex: '1 1 auto',
+            maxWidth: '1200px',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center'
+            gap: '2rem'
           }}>
-            {/* Plate Container (visible when no feature detail is shown) */}
+
+            {/* Plate Title - Always Above Plate */}
             <div style={{
-              position: 'absolute',
-              width: 'min(60vw, 600px)',
-              height: 'min(60vw, 600px)',
-              maxWidth: '600px',
-              maxHeight: '600px',
-              opacity: currentFeatureIndex >= 0 ? 0 : 1,
-              transition: 'opacity 0.6s ease',
-              pointerEvents: currentFeatureIndex >= 0 ? 'none' : 'auto'
+              textAlign: 'center',
+              width: '100%',
+              minHeight: '80px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
-              {/* Rotating Plate - cycles through different states */}
+              <h2 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.75rem, 4vw, 3rem)',
+                fontWeight: 400,
+                marginBottom: 0,
+                opacity: 0.95,
+                transition: 'all 0.5s ease'
+              }}>
+                {plateTitles[currentPlateIndex]}
+              </h2>
+            </div>
+
+            {/* Rotating Plate - Always Centered, Always Visible */}
+            <div style={{
+              position: 'relative',
+              width: 'min(50vw, 500px)',
+              height: 'min(50vw, 500px)',
+              maxWidth: '500px',
+              maxHeight: '500px',
+              flex: '0 0 auto'
+            }}>
+              {/* Plate Images - cycle through states */}
               {plateImages.map((image, index) => (
                 <img
                   key={index}
@@ -275,140 +304,85 @@ export default function Home() {
                   }}
                 />
               ))}
-
-              {/* Feature icons appearing around the plate - with fixed positioning */}
-              <div style={{
-                position: 'absolute',
-                width: '150%',
-                height: '150%',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                pointerEvents: 'none'
-              }}>
-                {features.map((feature, index) => {
-                  // Custom positioning for each icon
-                  let position = { left: '50%', top: '50%', transform: 'translate(-50%, -50%)' };
-
-                  // Meal Planning - Left top quadrant
-                  if (index === 0) {
-                    position = { left: '15%', top: '20%', transform: 'translate(-50%, -50%)' };
-                  }
-                  // Recipes - Right side, aligned horizontally with Meal Planning
-                  else if (index === 1) {
-                    position = { right: '15%', left: 'auto', top: '20%', transform: 'translate(50%, -50%)' };
-                  }
-                  // Shopping - Right bottom
-                  else if (index === 2) {
-                    position = { right: '15%', left: 'auto', bottom: '20%', top: 'auto', transform: 'translate(50%, 50%)' };
-                  }
-                  // Photos - Bottom center
-                  else if (index === 3) {
-                    position = { left: '50%', bottom: '10%', top: 'auto', transform: 'translate(-50%, 50%)' };
-                  }
-                  // Settings - Left side, aligned vertically with Meal Planning
-                  else if (index === 4) {
-                    position = { left: '15%', top: '50%', transform: 'translate(-50%, -50%)' };
-                  }
-                  // Community - Top center
-                  else if (index === 5) {
-                    position = { left: '50%', top: '10%', transform: 'translate(-50%, -50%)' };
-                  }
-
-                  return (
-                    <Link
-                      key={index}
-                      href={feature.link}
-                      style={{
-                        position: 'absolute',
-                        ...position,
-                        opacity: index < visibleIconsCount ? 1 : 0,
-                        transition: 'opacity 0.6s ease',
-                        textDecoration: 'none',
-                        color: 'var(--foreground)',
-                        textAlign: 'center',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        background: 'rgba(239, 193, 143, 0.95)',
-                        padding: '1rem',
-                        borderRadius: '12px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                        backdropFilter: 'blur(10px)',
-                        minWidth: '120px',
-                        pointerEvents: 'auto',
-                        border: '1px solid rgba(17, 62, 83, 0.1)'
-                      }}
-                    >
-                      <feature.icon size={32} strokeWidth={1.5} />
-                      <span style={{
-                        fontSize: '0.875rem',
-                        fontWeight: 500,
-                        letterSpacing: '0.02em'
-                      }}>
-                        {feature.title}
-                      </span>
-                    </Link>
-                  );
-                })}
-              </div>
             </div>
 
-            {/* Feature Detail Card (visible when feature is selected) */}
-            {currentFeatureIndex >= 0 && (
-              <div style={{
-                opacity: currentFeatureIndex >= 0 ? 1 : 0,
-                transition: 'opacity 0.6s ease',
-                textAlign: 'center',
-                maxWidth: '600px',
-                padding: '3rem'
-              }}>
-                <div style={{ margin: '0 auto 2rem', width: 'fit-content' }}>
-                  {(() => {
-                    const FeatureIcon = features[currentFeatureIndex].icon;
-                    return <FeatureIcon size={64} strokeWidth={1} />;
-                  })()}
-                </div>
-                <h3 style={{
-                  fontSize: '2rem',
-                  fontWeight: 400,
-                  marginBottom: '1.5rem'
-                }}>
-                  {features[currentFeatureIndex].title}
-                </h3>
-                <p style={{
-                  fontSize: '1.25rem',
-                  opacity: 0.8,
-                  lineHeight: 1.6
-                }}>
-                  {features[currentFeatureIndex].description}
-                </p>
-                <Link
-                  href={features[currentFeatureIndex].link}
-                  className="btn"
-                  style={{
-                    marginTop: '2rem',
-                    display: 'inline-block',
-                    padding: '1rem 2rem'
-                  }}
-                >
-                  Explore {features[currentFeatureIndex].title}
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {/* Bottom Subtitle */}
-          <div style={{ textAlign: 'center', flex: '0 0 auto' }}>
-            <p style={{
-              fontSize: '1.25rem',
-              fontWeight: 300,
-              opacity: 0.7,
+            {/* Feature Card - Below Plate */}
+            <div style={{
+              width: '100%',
+              maxWidth: '600px',
+              minHeight: '200px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              textAlign: 'center',
               transition: 'all 0.5s ease'
             }}>
-              {currentFeatureIndex >= 0 ? 'Discover all the tools you need' : plateSubtitles[currentPlateIndex]}
-            </p>
+              {/* Feature Icon - Clickable */}
+              <Link
+                href={features[currentFeatureIndex].link}
+                style={{
+                  marginBottom: '1.5rem',
+                  padding: '1.5rem',
+                  background: 'rgba(17, 62, 83, 0.05)',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(17, 62, 83, 0.1)',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'block',
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(17, 62, 83, 0.1)';
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.borderColor = 'rgba(17, 62, 83, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(17, 62, 83, 0.05)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = 'rgba(17, 62, 83, 0.1)';
+                }}
+              >
+                {(() => {
+                  const FeatureIcon = features[currentFeatureIndex].icon;
+                  return <FeatureIcon size={48} strokeWidth={1.5} color="#113e53" />;
+                })()}
+              </Link>
+
+              {/* Feature Title */}
+              <h3 style={{
+                fontSize: '1.75rem',
+                fontWeight: 500,
+                marginBottom: '1rem',
+                color: '#113e53'
+              }}>
+                {features[currentFeatureIndex].title}
+              </h3>
+
+              {/* Feature Description */}
+              <p style={{
+                fontSize: '1.125rem',
+                opacity: 0.75,
+                lineHeight: 1.6,
+                marginBottom: '1.5rem',
+                color: '#113e53'
+              }}>
+                {features[currentFeatureIndex].description}
+              </p>
+
+              {/* CTA Button */}
+              <Link
+                href={features[currentFeatureIndex].link}
+                className="btn"
+                style={{
+                  padding: '0.875rem 1.75rem',
+                  fontSize: '0.95rem'
+                }}
+              >
+                Explore {features[currentFeatureIndex].title}
+              </Link>
+            </div>
+
           </div>
         </div>
       </section>

@@ -26,11 +26,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
     const navLinks = user
         ? [
-            { href: '/dashboard', label: '🏠 Dashboard' },
-            { href: '/meal-plan', label: '📅 Meal Plan' },
-            { href: '/shopping-list', label: '🛒 Shopping List' },
-            { href: '/upload-photo', label: '📸 Upload Photo' },
-            { href: '/settings', label: '⚙️ Settings' },
+            { href: '/dashboard', label: 'Dashboard' },
+            { href: '/meal-plan', label: 'Meal Plan' },
+            { href: '/shopping-list', label: 'Shopping List' },
+            { href: '/upload-photo', label: 'Upload Photo' },
+            { href: '/settings', label: 'Settings' },
         ]
         : [];
 
@@ -40,7 +40,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <nav className="container mx-auto px-4 sm:px-6 py-4">
                     <div className="flex items-center justify-between">
                         <Link href="/" className="text-2xl font-bold gradient-text">
-                            🍽️ Meal Tracker
+                            Lizzie Tracker
                         </Link>
 
                         {!loading && (
@@ -53,8 +53,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                                     key={link.href}
                                                     href={link.href}
                                                     className={`text-sm font-medium transition-colors hover:text-primary ${pathname === link.href
-                                                            ? 'text-primary'
-                                                            : 'text-gray-600'
+                                                        ? 'text-primary'
+                                                        : 'text-gray-600'
                                                         }`}
                                                 >
                                                     {link.label}
@@ -90,8 +90,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                     key={link.href}
                                     href={link.href}
                                     className={`text-xs font-medium px-3 py-2 rounded-full whitespace-nowrap transition-colors ${pathname === link.href
-                                            ? 'bg-primary text-white'
-                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                        ? 'bg-primary text-white'
+                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                         }`}
                                 >
                                     {link.label}
@@ -109,7 +109,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <footer className="bg-gray-50 border-t border-gray-200 py-8 mt-12">
                 <div className="container mx-auto px-4 sm:px-6">
                     <div className="text-center text-gray-600 text-sm">
-                        <p>© 2026 Meal Tracker. Built with ❤️ for healthy eating habits.</p>
+                        <p>© 2026 Lizzie Tracker. Built for healthy eating habits.</p>
                     </div>
                 </div>
             </footer>

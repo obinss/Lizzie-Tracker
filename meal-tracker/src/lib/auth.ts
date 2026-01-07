@@ -1,13 +1,11 @@
 import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged,
-    User,
-    UserCredential,
-} from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { auth, db } from './firebase';
+    mockSignUp,
+    mockSignIn,
+    mockSignOut,
+    mockOnAuthStateChanged,
+    mockGetUserProfile,
+    type MockUser
+} from './mockAuth';
 
 export interface UserProfile {
     uid: string;
@@ -17,61 +15,63 @@ export interface UserProfile {
     friends: string[];
 }
 
+// Sign up a new user with mock authentication
 export const signUp = async (
     email: string,
     password: string,
     name: string
-): Promise<UserCredential> => {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-    // Create user profile in Firestore
-    await setDoc(doc(db, 'users', userCredential.user.uid), {
-        uid: userCredential.user.uid,
-        email,
-        name,
-        createdAt: new Date(),
-        friends: [],
-    });
-
-    // Create default settings
-    await setDoc(doc(db, 'users', userCredential.user.uid, 'settings', 'preferences'), {
-        mealTimes: {
-            breakfast: '08:00',
-            lunch: '12:00',
-            dinner: '18:00',
-        },
-        preparationTime: {
-            breakfast: 15,
-            lunch: 30,
-            dinner: 45,
-        },
-        notificationsEnabled: true,
-    });
-
-    return userCredential;
+) => {
+    try {
+        const user = await mockSignUp(email, password, name);
+        return { user };
+    } catch (error: any) {
+        throw new Error(error.message || 'Failed to create account');
+    }
 };
 
+// Sign in existing user
 export const signIn = async (
     email: string,
     password: string
-): Promise<UserCredential> => {
-    return signInWithEmailAndPassword(auth, email, password);
-};
-
-export const logOut = async (): Promise<void> => {
-    return signOut(auth);
-};
-
-export const getUserProfile = async (uid: string): Promise<UserProfile | null> => {
-    const docRef = doc(db, 'users', uid);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-        return docSnap.data() as UserProfile;
+) => {
+    try {
+        const user = await mockSignIn(email, password);
+        return { user };
+    } catch (error: any) {
+        throw new Error(error.message || 'Failed to sign in');
     }
-    return null;
 };
 
-export const onAuthChange = (callback: (user: User | null) => void) => {
-    return onAuthStateChanged(auth, callback);
+// Sign out current user
+export const logOut = async (): Promise<void> => {
+    try {
+        await mockSignOut();
+    } catch (error: any) {
+        throw new Error(error.message || 'Failed to sign out');
+    }
+};
+
+// Listen to auth state changes
+export const onAuthChange = (callback: (user: MockUser | null) => void) => {
+    return mockOnAuthStateChanged(callback);
+};
+
+// Get user profile
+export const getUserProfile = async (uid: string): Promise<UserProfile | null> => {
+    try {
+        const profile = await mockGetUserProfile(uid);
+        if (profile) {
+            return {
+                uid,
+                email: profile.email,
+                name: profile.name,
+                createdAt: new Date(),
+                friends: profile.friends
+            };
+        }
+        return null;
+    } catch (error) {
+        console.error('Error getting user profile:', error);
+        return null;
+    }
 };
