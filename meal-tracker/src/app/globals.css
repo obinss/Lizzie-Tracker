@@ -2,10 +2,11 @@
 
 :root {
   /* Production Color Palette - Soft Ivory & Gray Teal */
-  --background: #ebeae7;
-  --foreground: #2a3636;
-  --accent-bg: #2a3636;
-  --accent-fg: #ebeae7;
+  --background: #efc18f;
+  --foreground: #113e53;
+  --accent-bg: #113e53;
+  --accent-fg: #efc18f;
+  --accent-pink: #f1626b;
 
   /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
