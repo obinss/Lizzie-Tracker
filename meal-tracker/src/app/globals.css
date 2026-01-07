@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  /* Production Color Palette - Champagne Pink & Crayola */
-  --background: #E6D4C7;
-  --foreground: #273B3A;
-  --plate: #ffffff;
-  --accent: #273B3A;
+  /* Production Color Palette - Soft Ivory & Gray Teal */
+  --background: #ebeae7;
+  --foreground: #2a3636;
+  --accent-bg: #2a3636;
+  --accent-fg: #ebeae7;
 
   /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -116,7 +116,7 @@ h3 {
   padding: var(--spacing-sm);
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(39, 59, 58, 0.3);
+  border-bottom: 1px solid rgba(42, 54, 54, 0.3);
   color: var(--foreground);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -130,20 +130,20 @@ h3 {
 }
 
 .input::placeholder {
-  color: rgba(39, 59, 58, 0.4);
+  color: rgba(42, 54, 54, 0.4);
   font-weight: 300;
 }
 
 /* Card - Minimalist */
 .card {
   background: transparent;
-  border: 1px solid rgba(39, 59, 58, 0.2);
+  border: 1px solid rgba(42, 54, 54, 0.2);
   padding: var(--spacing-md);
   transition: border-color var(--transition);
 }
 
 .card:hover {
-  border-color: rgba(39, 59, 58, 0.4);
+  border-color: rgba(42, 54, 54, 0.4);
 }
 
 /* Plate Scroll Effect */
@@ -227,8 +227,15 @@ h3 {
 }
 
 .nav.scrolled {
-  background: rgba(39, 59, 58, 0.95);
+  background: var(--accent-bg);
   backdrop-filter: blur(10px);
+}
+
+.nav.scrolled .nav-logo,
+.nav.scrolled .nav-link,
+.nav.scrolled .btn {
+  color: var(--accent-fg);
+  border-color: var(--accent-fg);
 }
 
 .nav-container {
@@ -354,5 +361,26 @@ h3 {
   .plate-container {
     width: 90vw;
     height: 90vw;
+  }
+
+  /* Hide some text on mobile for cleaner look */
+  .scroll-indicator {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: clamp(2rem, 12vw, 4rem) !important;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.75rem;
   }
 }

@@ -21,7 +21,6 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
 
       // Calculate progress through the plate section
       const plateSection = document.getElementById('plate-section');
@@ -55,15 +54,15 @@ export default function Home() {
         minHeight: '100vh',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#E6D4C7',
-        color: '#273B3A'
+        background: '#ebeae7',
+        color: '#2a3636'
       }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{
             width: '40px',
             height: '40px',
-            border: '1px solid rgba(39, 59, 58, 0.3)',
-            borderTop: '1px solid #273B3A',
+            border: '1px solid rgba(42, 54, 54, 0.3)',
+            borderTop: '1px solid #2a3636',
             borderRadius: '50%',
             animation: 'spin 1s linear infinite',
             margin: '0 auto 1rem'
@@ -74,17 +73,25 @@ export default function Home() {
     );
   }
 
-  const features = [
-    { icon: Calendar, title: 'Meal Planning', link: '/meal-plan' },
-    { icon: BookOpen, title: 'Recipes', link: '/meal-plan' },
-    { icon: ShoppingCart, title: 'Shopping', link: '/shopping-list' },
-    { icon: Camera, title: 'Photos', link: '/upload-photo' },
-    { icon: Settings, title: 'Settings', link: '/settings' },
-    { icon: Users, title: 'Community', link: '/dashboard' }
+  const foodItems = [
+    { name: 'Quinoa', image: '/quinoa.png', left: '15%', top: '45%', size: '35%' },
+    { name: 'Broccoli', image: '/broccoli.png', left: '20%', top: '25%', size: '28%' },
+    { name: 'Chicken', image: '/chicken.png', left: '55%', top: '40%', size: '32%' },
+    { name: 'Berries', image: '/berries.png', left: '50%', top: '10%', size: '20%' },
+    { name: 'Yogurt', image: '/yogurt.png', left: '18%', top: '15%', size: '18%' }
   ];
 
-  // Calculate which icons should be visible based on scroll progress
-  const visibleIconCount = Math.floor(scrollProgress * features.length);
+  const features = [
+    { icon: Calendar, title: 'Meal Planning', link: '/meal-plan', description: 'Weekly plans tailored to your goals' },
+    { icon: BookOpen, title: 'Recipes', link: '/meal-plan', description: 'Detailed instructions for every dish' },
+    { icon: ShoppingCart, title: 'Shopping', link: '/shopping-list', description: 'Automated ingredient lists' },
+    { icon: Camera, title: 'Photos', link: '/upload-photo', description: 'Document your meals visually' },
+    { icon: Settings, title: 'Settings', link: '/settings', description: 'Customize times and notifications' },
+    { icon: Users, title: 'Community', link: '/dashboard', description: 'Track progress with friends' }
+  ];
+
+  // Calculate which food items should be visible based on scroll progress
+  const visibleFoodCount = Math.floor(scrollProgress * (foodItems.length + 1));
 
   return (
     <>
@@ -105,7 +112,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section - Title at Top */}
+      {/* Hero Section */}
       <section style={{
         minHeight: '100vh',
         display: 'flex',
@@ -133,10 +140,10 @@ export default function Home() {
           marginBottom: '3rem',
           maxWidth: '600px'
         }}>
-          A minimalist approach to meal planning, accountability, and community
+          A thoughtful approach to meal planning, accountability, and community
         </p>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link href="/signup" className="btn">
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+          <Link href="/signup" className="btn" style={{ padding: '1rem 2rem' }}>
             Begin Your Journey
           </Link>
           <Link href="/login" className="btn-minimal">
@@ -146,19 +153,15 @@ export default function Home() {
         <div className="scroll-indicator">Scroll to Explore</div>
       </section>
 
-      {/* Plate Section - Fixed height where icons appear */}
+      {/* Plate Section - Fixed plate stays in view, content scrolls */}
       <section id="plate-section" style={{
-        minHeight: '400vh',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+        minHeight: '500vh',
+        position: 'relative'
       }}>
-        {/* Sticky plate that stays in view while scrolling through this section */}
+        {/* Sticky container that keeps plate centered */}
         <div style={{
           position: 'sticky',
-          top: '50%',
-          transform: 'translateY(-50%)',
+          top: 0,
           width: '100%',
           height: '100vh',
           display: 'flex',
@@ -166,14 +169,15 @@ export default function Home() {
           justifyContent: 'center',
           pointerEvents: 'none'
         }}>
+          {/* Plate with food items */}
           <div style={{
-            width: 'min(80vw, 600px)',
-            height: 'min(80vw, 600px)',
             position: 'relative',
-            transform: `rotate(${scrollProgress * 360}deg)`,
-            transition: 'transform 0.1s linear'
+            width: 'min(70vw, 500px)',
+            height: 'min(70vw, 500px)',
+            maxWidth: '500px',
+            maxHeight: '500px'
           }}>
-            {/* Realistic plate image */}
+            {/* Plate image */}
             <img
               src="/plate.png"
               alt="Plate"
@@ -181,42 +185,89 @@ export default function Home() {
                 width: '100%',
                 height: '100%',
                 objectFit: 'contain',
-                filter: 'drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3))'
+                filter: 'drop-shadow(0 20px 60px rgba(0, 0, 0, 0.2))'
               }}
             />
-            {/* Food icons appearing on the plate */}
+
+            {/* Food items appearing on the plate */}
+            {foodItems.map((food, index) => (
+              <img
+                key={index}
+                src={food.image}
+                alt={food.name}
+                style={{
+                  position: 'absolute',
+                  left: food.left,
+                  top: food.top,
+                  width: food.size,
+                  height: 'auto',
+                  opacity: index < visibleFoodCount ? 1 : 0,
+                  transform: `scale(${index < visibleFoodCount ? 1 : 0.5})`,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+                  pointerEvents: 'none'
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Feature icons with labels positioned around the plate */}
+          <div style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            maxWidth: '900px',
+            pointerEvents: 'auto'
+          }}>
             {features.map((feature, index) => {
               const angle = (index * Math.PI * 2) / features.length - Math.PI / 2;
-              const radius = 35; // percentage from center
+              const radius = 45; // percentage from center
               const x = 50 + Math.cos(angle) * radius;
               const y = 50 + Math.sin(angle) * radius;
-              const isVisible = index < visibleIconCount;
+              const isVisible = index < visibleFoodCount;
 
               return (
-                <div
+                <Link
                   key={index}
+                  href={feature.link}
                   style={{
                     position: 'absolute',
-                    top: `${y}%`,
                     left: `${x}%`,
-                    transform: `translate(-50%, -50%) rotate(-${scrollProgress * 360}deg) scale(${isVisible ? 1 : 0.5})`,
+                    top: `${y}%`,
+                    transform: `translate(-50%, -50%) scale(${isVisible ? 1 : 0.7})`,
                     opacity: isVisible ? 1 : 0,
                     transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-                    pointerEvents: 'auto'
+                    textDecoration: 'none',
+                    color: 'var(--foreground)',
+                    textAlign: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    background: 'rgba(235, 234, 231, 0.9)',
+                    padding: '1rem',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    minWidth: '120px'
                   }}
                 >
-                  <Link href={feature.link} style={{ display: 'block', color: '#273B3A' }}>
-                    <feature.icon size={48} strokeWidth={1.5} />
-                  </Link>
-                </div>
+                  <feature.icon size={32} strokeWidth={1.5} />
+                  <span style={{
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                    letterSpacing: '0.02em'
+                  }}>
+                    {feature.title}
+                  </span>
+                </Link>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Feature Sections - Below the plate */}
-      <section style={{ background: '#273B3A', color: '#E6D4C7', position: 'relative', zIndex: 10 }}>
+      {/* Feature Details Section */}
+      <section style={{ background: 'var(--accent-bg)', color: 'var(--accent-fg)', position: 'relative', zIndex: 10 }}>
         {features.map((feature, index) => (
           <div key={index} className="section">
             <div className="section-content">
@@ -225,14 +276,7 @@ export default function Home() {
                   <feature.icon size={48} strokeWidth={1} />
                 </div>
                 <h2 className="section-title">{feature.title}</h2>
-                <p className="section-description">
-                  {index === 0 && 'Curated weekly plans tailored to your goals'}
-                  {index === 1 && 'Detailed instructions for every dish'}
-                  {index === 2 && 'Automated ingredient lists'}
-                  {index === 3 && 'Document your meals visually'}
-                  {index === 4 && 'Customize times and notifications'}
-                  {index === 5 && 'Track progress with friends'}
-                </p>
+                <p className="section-description">{feature.description}</p>
               </Link>
             </div>
           </div>
@@ -244,7 +288,7 @@ export default function Home() {
             <h2 style={{ marginBottom: '2rem' }}>
               Start Tracking Today
             </h2>
-            <Link href="/signup" className="btn" style={{ padding: '1rem 2rem' }}>
+            <Link href="/signup" className="btn" style={{ padding: '1rem 2rem', borderColor: 'var(--accent-fg)', color: 'var(--accent-fg)' }}>
               Create Account
             </Link>
           </div>
@@ -254,7 +298,7 @@ export default function Home() {
         <footer style={{
           padding: '4rem 2rem',
           textAlign: 'center',
-          borderTop: '1px solid rgba(230, 212, 199, 0.2)',
+          borderTop: '1px solid rgba(235, 234, 231, 0.2)',
           fontSize: '0.875rem',
           opacity: 0.7
         }}>
